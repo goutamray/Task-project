@@ -59,7 +59,6 @@ export default function AddTaskModal({ onSave, taskToUpdate, onCloseClick }) {
                 id="title"
                 value={task.title}
                 onChange={handleChange}
-                required=""
               />
             </div>
 
@@ -72,8 +71,6 @@ export default function AddTaskModal({ onSave, taskToUpdate, onCloseClick }) {
                 id="description"
                 value={task.description}
                 onChange={handleChange}
-                required=""
-                defaultValue={""}
               />
             </div>
 
@@ -87,7 +84,6 @@ export default function AddTaskModal({ onSave, taskToUpdate, onCloseClick }) {
                   value={task.tags}
                   onChange={handleChange}
                   id="tags"
-                  required=""
                 />
               </div>
 
@@ -99,7 +95,6 @@ export default function AddTaskModal({ onSave, taskToUpdate, onCloseClick }) {
                   id="priority"
                   value={task.priority}
                   onChange={handleChange}
-                  required=""
                 >
                   <option value="">Select Priority</option>
                   <option value="Low">Low</option>

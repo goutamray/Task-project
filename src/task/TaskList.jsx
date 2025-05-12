@@ -26,7 +26,7 @@ export default function TaskList({ tasks, onEdit, onDelete, onFav }) {
             </tr>
           </thead>
           <tbody>
-            {tasks.map((task) => {
+            {tasks?.map((task) => {
               return (
                 <tr
                   className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2"

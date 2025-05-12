@@ -4,8 +4,8 @@ import { useState } from "react";
 import SearchTask from "./SearchTask";
 import TaskActions from "./TaskActions";
 import TaskList from "./TaskList";
-
 import AddTaskModal from "./AddTaskModal";
+import TaskNotFound from "./TaskNotFound";
 
 export default function TaskBoard() {
   // default task
@@ -76,6 +76,15 @@ export default function TaskBoard() {
     setTasks(newTask);
   }
 
+  // handle task search
+  function handleTaskSearch(searchTerm) {
+    const filterTask = tasks.filter((task) =>
+      task.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+
+    setTasks([...filterTask]);
+  }
+
   return (
     <>
       {/* Begin Table */}
@@ -89,23 +98,25 @@ export default function TaskBoard() {
         )}
 
         <div className="container">
-          {/* Search Box */}
           <div className="p-2 flex justify-end">
-            <SearchTask />
+            <SearchTask onSearch={handleTaskSearch} />
           </div>
-          {/* Search Box Ends */}
           <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
             <TaskActions
               onAddClick={() => setShowAddModal(true)}
               onDeleteAllClick={handleDeleteAllClick}
             />
 
-            <TaskList
-              tasks={tasks}
-              onEdit={HandleTaskEdit}
-              onDelete={handleTaskDelete}
-              onFav={handleFavouriteTask}
-            />
+            {tasks.length > 0 ? (
+              <TaskList
+                tasks={tasks}
+                onEdit={HandleTaskEdit}
+                onDelete={handleTaskDelete}
+                onFav={handleFavouriteTask}
+              />
+            ) : (
+              <TaskNotFound />
+            )}
           </div>
         </div>
       </section>
